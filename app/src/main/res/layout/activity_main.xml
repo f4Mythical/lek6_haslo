@@ -71,6 +71,28 @@
         android:hint="Powtórz hasło"
         android:inputType="textPassword" />
 
+    <TextView
+        android:id="@+id/textViewCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textPow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView" />
+
     <Button
         android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
