@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+   >
+
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="#008080"
+        android:gravity="center"
+        android:text="Rejestruj konto"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/labelEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Podaj e-mail:"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/labelPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Podaj hasło:"
+        android:textSize="16sp"
+        android:layout_marginTop="18dp" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="Hasło"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/labelRepeatPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Powtórz hasło:"
+        android:textSize="16sp"
+        android:layout_marginTop="18dp" />
+
+    <EditText
+        android:id="@+id/editTextRepeatPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:hint="Powtórz hasło"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:text="ZATWIERDŹ" />
+
+
+
+</LinearLayout>
