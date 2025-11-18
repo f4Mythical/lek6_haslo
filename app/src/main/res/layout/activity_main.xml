@@ -80,6 +80,53 @@
         android:paddingRight="32dp"
         android:text="ZATWIERDŹ" />
 
+    <Button
+        android:id="@+id/buttonRandom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wygeneruj haslo" />
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/buttonPower"
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:text="Sprawdz Moc" />
+
+        <TextView
+            android:id="@+id/UpperCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Duze litery" />
+
+        <TextView
+            android:id="@+id/LowerCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Male litery" />
+
+        <TextView
+            android:id="@+id/Special"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Specjalne" />
+
+        <TextView
+            android:id="@+id/Number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cyfry" />
+
+        <TextView
+            android:id="@+id/Lenght"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dlugosc >=12" />
+    </LinearLayout>
 
 
 </LinearLayout>
