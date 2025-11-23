@@ -187,74 +187,14 @@ TextPow = findViewById(R.id.textPow);
             }
         }
         });
-        ButtonWygenerujHaslo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EditText input = new EditText(MainActivity.this);
-                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        ButtonWygenerujHaslo.setOnClickListener(
+                new GenerowanieHasla(
+                        MainActivity.this,
+                        TekstZmien,
+                        duze, male, specjalne, liczby
+                )
+        );
 
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle("Podaj długość hasła")
-                        .setView(input)
-                        .setPositiveButton("OK", (dialog, which) -> {
-
-                            String tekst = input.getText().toString();
-                            if (!tekst.isEmpty()) {
-
-                                int dlugosc = Integer.parseInt(tekst);
-
-                                String all = duze + male + specjalne + liczby;
-
-                                Random random = new Random();
-
-                                ArrayList<Integer> ciag = new ArrayList<>();
-                                for (int i = 0; i < dlugosc; i++) {
-                                    ciag.add(i);
-                                }
-
-                                ArrayList<Integer> wyjatki = new ArrayList<>();
-                                wyjatki.add(1);
-                                wyjatki.add(2);
-                                wyjatki.add(3);
-                                wyjatki.add(4);
-
-                                char[] wynik = new char[dlugosc];
-
-                                for (int x = 0; x < wyjatki.size(); x++) {
-
-                                    int typ = wyjatki.get(x);
-                                    int index = random.nextInt(ciag.size());
-                                    int pozycja = ciag.get(index);
-                                    ciag.remove(index);
-
-                                    switch (typ) {
-                                        case 1:
-                                            wynik[pozycja] = duze.charAt(random.nextInt(duze.length()));
-                                            break;
-                                        case 2:
-                                            wynik[pozycja] = male.charAt(random.nextInt(male.length()));
-                                            break;
-                                        case 3:
-                                            wynik[pozycja] = specjalne.charAt(random.nextInt(specjalne.length()));
-                                            break;
-                                        case 4:
-                                            wynik[pozycja] = liczby.charAt(random.nextInt(liczby.length()));
-                                            break;
-                                    }
-                                }
-
-                                for (int pos : ciag) {
-                                    wynik[pos] = all.charAt(random.nextInt(all.length()));
-                                }
-
-                                String haslo = new String(wynik);
-                                TekstZmien.setText(haslo);
-                            }
-                        })
-                        .setNegativeButton("Anuluj", null)
-                        .show();
-            }
-        });
 
     }
 }
