@@ -3,37 +3,26 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.text.InputType;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
-public class GenerowanieHasla  implements android.view.View.OnClickListener {
 
-    private final Context context;
-    private final TextView wynikText;
-    private final String duze;
-    private final String male;
-    private final String specjalne;
-    private final String liczby;
+public class GenerowanieHasla implements android.view.View.OnClickListener {
 
-    public GenerowanieHasla(Context context, TextView wynikText,
-                            String duze, String male, String specjalne, String liczby) {
+    private final MainActivity activity;
 
-        this.context = context;
-        this.wynikText = wynikText;
-        this.duze = duze;
-        this.male = male;
-        this.specjalne = specjalne;
-        this.liczby = liczby;
+    public GenerowanieHasla(MainActivity activity) {
+        this.activity = activity;
     }
 
     @Override
     public void onClick(android.view.View view) {
 
-        EditText input = new EditText(context);
+        EditText input = new EditText(activity);
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
 
-        new AlertDialog.Builder(context)
+        new AlertDialog.Builder(activity)
                 .setTitle("Podaj długość hasła")
                 .setView(input)
                 .setPositiveButton("OK", (dialog, which) -> {
@@ -43,7 +32,12 @@ public class GenerowanieHasla  implements android.view.View.OnClickListener {
 
                         int dlugosc = Integer.parseInt(tekst);
 
-                        String all = duze + male + specjalne + liczby;
+                        if (dlugosc < 4 || dlugosc > 20) {
+                            Toast.makeText(activity, "Długość hasła musi być między 4 a 20", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        String all = activity.duze + activity.male + activity.specjalne + activity.liczby;
                         Random random = new Random();
 
                         ArrayList<Integer> ciag = new ArrayList<>();
@@ -61,13 +55,22 @@ public class GenerowanieHasla  implements android.view.View.OnClickListener {
                             int index = random.nextInt(ciag.size());
                             int pozycja = ciag.get(index);
                             ciag.remove(index);
-                            wyjatki.remove(index);
+                            wyjatki.remove(x);
+                            x--;
+
                             switch (typ) {
                                 case 1:
-                                wynik[pozycja] = duze.charAt(random.nextInt(duze.length()));
-                                break; case 2: wynik[pozycja] = male.charAt(random.nextInt(male.length()));
-                                    break; case 3: wynik[pozycja] = specjalne.charAt(random.nextInt(specjalne.length()));
-                                    break; case 4: wynik[pozycja] = liczby.charAt(random.nextInt(liczby.length())); break;
+                                    wynik[pozycja] = activity.duze.charAt(random.nextInt(activity.duze.length()));
+                                    break;
+                                case 2:
+                                    wynik[pozycja] = activity.male.charAt(random.nextInt(activity.male.length()));
+                                    break;
+                                case 3:
+                                    wynik[pozycja] = activity.specjalne.charAt(random.nextInt(activity.specjalne.length()));
+                                    break;
+                                case 4:
+                                    wynik[pozycja] = activity.liczby.charAt(random.nextInt(activity.liczby.length()));
+                                    break;
                             }
                         }
 
@@ -75,7 +78,10 @@ public class GenerowanieHasla  implements android.view.View.OnClickListener {
                             wynik[pos] = all.charAt(random.nextInt(all.length()));
                         }
 
-                        wynikText.setText(new String(wynik));
+                        activity.TekstZmien.setText(new String(wynik));
+                        activity.TekstSprawdz.setText(new String(wynik));
+                        activity.TekstHaslo.setText(new String(wynik));
+
                     }
                 })
                 .setNegativeButton("Anuluj", null)
