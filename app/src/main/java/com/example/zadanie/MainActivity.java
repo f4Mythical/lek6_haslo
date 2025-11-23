@@ -1,7 +1,9 @@
 package com.example.zadanie;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private EditText TekstEmail;
@@ -181,13 +187,61 @@ TextPow = findViewById(R.id.textPow);
             }
         }
         });
-        ButtonWygenerujHaslo.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
+        ButtonWygenerujHaslo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                String all = duze + male + specjalne + liczby;
+
+                Random random = new Random();
+
+                ArrayList<Integer> ciag = new ArrayList<>();
+                for (int i = 0; i < 14; i++) {
+                    ciag.add(i);
+                }
+
+                ArrayList<Integer> wyjatki = new ArrayList<>();
+                wyjatki.add(1); wyjatki.add(2); wyjatki.add(3); wyjatki.add(4);
+
+
+                char[] wynik = new char[14];
+
+                for (int x = 0; x < wyjatki.size(); x++) {
+
+                    int typ = wyjatki.get(x);
+                    int index = random.nextInt(ciag.size());
+                    int pozycja = ciag.get(index);
+                    ciag.remove(index);
+
+                    switch (typ) {
+                        case 1:
+                            wynik[pozycja] = duze.charAt(random.nextInt(duze.length()));
+                            break;
+
+                        case 2:
+                            wynik[pozycja] = male.charAt(random.nextInt(male.length()));
+                            break;
+
+                        case 3:
+                            wynik[pozycja] = specjalne.charAt(random.nextInt(specjalne.length()));
+                            break;
+
+                        case 4:
+                            wynik[pozycja] = liczby.charAt(random.nextInt(liczby.length()));
+                            break;
                     }
                 }
-        );
+
+                for (int pos : ciag) {
+                    wynik[pos] = all.charAt(random.nextInt(all.length()));
+                }
+
+                String haslo = new String(wynik);
+
+                TekstZmien.setText(haslo);
+            }
+        });
+
     }
 }
